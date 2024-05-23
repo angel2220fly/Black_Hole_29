@@ -356,7 +356,7 @@ class compression:
                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                                                                                                                                                                                                 
-                                                                    elif len(Z4)+8+13+13+8+len(C1) < long_11*8:
+                                                                    elif len(Z4)+8+13+8+len(C1) < long_11*8:
                                                                         
                                                                         
                                                                         input_string+= "En="+str(En)+", "+"En2="+str(En1)+", "+"En3="+str(En3)+", "+"Longl_F="+str(len(Z4))+" / "
@@ -398,7 +398,7 @@ class compression:
                                                                 CL1=format(longl,W)        
                                                                 CL2=format(En,'013b')
                                                                 
-                                                                CL4=format(En3,'013b')
+                                                             
                                                                
                                                                 #print(N3)
                                                                                                                          
@@ -411,7 +411,7 @@ class compression:
                                                                        #print(Long_PM1)
                                                                        N3=1                                                                       
                                                                        if N3==1:
-                                                                               File_information5_17="1"+CL4+CL2+CL1+Z4
+                                                                               File_information5_17="1"+CL2+CL1+Z4
                                                                                long_1=len(File_information5_17)
                                                                                add_bits=""
                                                                                count_bits=8-long_1%8
@@ -474,9 +474,7 @@ class compression:
                                                             
                                     INFO=Extract
 
-                                    En3=int(INFO[:13],2)
-                                        #print(longl)
-                                    INFO=INFO[13:]
+                                 
                                     
                                     En2=0
                                         
