@@ -552,11 +552,11 @@ class compression:
                                     elif En<=(8192*2)-1:
                                         longl=int(INFO[:14],2) 
                                         INFO=INFO[14:]
-                                        SEN=13                                                                                                                                                                        
+                                        SEN=14                                                                                                                                                                      
                                     elif En<=(8192*4)-1:
                                         longl=int(INFO[:15],2) 
                                         INFO=INFO[15:]
-                                        SEN=13                                        
+                                        SEN=15                                      
                                     #print(SEN)                                    
                                     
                                     Extract1=0
