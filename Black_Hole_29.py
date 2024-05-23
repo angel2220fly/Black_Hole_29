@@ -21,7 +21,7 @@ class compression:
 
                 def Count_adds(M1,En,En1,En3):
                         
-                        En3+=1
+                        
                       
                         if En3==(8192*4)-1:
                             En3=0
@@ -34,7 +34,7 @@ class compression:
                                 M1=1
                                                                                       
                         if En==(8192*4)-1:                                                                    
-                                
+                                En3+=1
                                 M1=0
                                 En=255
                         
@@ -366,13 +366,14 @@ class compression:
                                                                         
                                                                         
                                                                         input_string+= "En="+str(En)+", "+"En2="+str(En1)+", "+"En3="+str(En3)+", "+"Longl_F="+str(len(Z4))+" / "
+                                                                        #print(input_string)
                                                                    
                                                                         
                                                                     
                                                                         
                                                                         
                                                                         
-                                                                        if len(input_string)>10000:
+                                                                        if len(input_string)>100:
                                                                          smallest_longl_F_values = find_smallest_longl_F_values(input_string)
                                                                          if smallest_longl_F_values:
                                                                              en, en2, en3, longl_F = smallest_longl_F_values
