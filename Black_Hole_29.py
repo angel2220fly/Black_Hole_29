@@ -23,7 +23,7 @@ class compression:
                         
                         En3+=1
                       
-                        if En3==(8192*4)-1:
+                        if En3==8191:
                             En3=0
                         if M1==0:
                                 En-=1
@@ -33,7 +33,7 @@ class compression:
                                 En+=1
                                 M1=1
                                                                                       
-                        if En==(8192*4)-1:                                                                    
+                        if En==8191:                                                                    
                                 
                                 M1=0
                                 En=255
@@ -237,7 +237,7 @@ class compression:
                                                                         C=format(Counts,'01b')
                                                                         C3=En-len(C)
                                                                         #print(C1)
-                                                                        if C3>=4+3 and En<=15 or C3>=5+3 and En<=31 or C3>=6 +3 and En<=63 or C3>=7+3 and En<=127 or C3>=8+3 and En<=255 or C3>=9+3 and En<=511 or C3>=10+3 and En<=1023 or C3>=11+3 and En<=2047 or C3>=12+3 and En<=4095 or C3>=13+3 and En<=8191 or C3>=14+3 and  En<=(8192*2)-1 or C3>=15+3 and En<=(8192*4)-1 or INFO_A[:3]=="011" or INFO_A[:3]=="010":
+                                                                        if C3>=4+3 and En<=15 or C3>=5+3 and En<=31 or C3>=6 +3 and En<=63 or C3>=7+3 and En<=127 or C3>=8+3 and En<=255 or C3>=9+3 and En<=511 or C3>=10+3 and En<=1023 or C3>=11+3 and En<=2047 or C3>=12+3 and En<=4095 or C3>=13+3 and En<=8191 or INFO_A[:3]=="011" or INFO_A[:3]=="010":
                                                                             
     
                                                                                 #print(C3)
@@ -287,12 +287,7 @@ class compression:
                                                                             elif En<=4095:
                                                                                 C1=format(C4,'012b')                                                                                                                                                                                                                                                                        
                                                                             elif En<=8191:
-                                                                                C1=format(C4,'013b') 
-                                                                                
-                                                                            elif En<=(8192*2)-1:
-                                                                                C1=format(C4,'014b')                                                                                                      
-                                                                            elif En<=(8192*4)-1:
-                                                                                C1=format(C4,'015b')                                                                                                                                        
+                                                                                C1=format(C4,'013b')                  
                                                                             C2=format(longl,'06b') 
                                                                                                                                                         
     
@@ -338,12 +333,12 @@ class compression:
                                                                         
                                                                
 
-                                                                    if  Find==2 or En3==(8192*4)-2:
+                                                                    if  Find==2 or En3==8190:
                                                                                 Find=1
                                                                                 Extract1=1                                                             
                                                                                                
                                                                     
-                                                                    elif En3==(8192*4)-3 and Find==3:
+                                                                    elif En3==8189 and Find==3:
                                                                         smallest_longl_F_values = find_smallest_longl_F_values(input_string)
                                                                         
                                                                         if smallest_longl_F_values:
@@ -361,7 +356,7 @@ class compression:
                                                                                                                                                                                                             
                                                                                                                                                                                                                                                                                                                                                                                 
                                                                                                                                                                                                                                                                                                                                                                                 
-                                                                    elif long_11*8 == long_11*8:
+                                                                    elif len(Z4)+8+13+13+8+len(C1) < long_11*8:
                                                                         
                                                                         
                                                                         input_string+= "En="+str(En)+", "+"En2="+str(En1)+", "+"En3="+str(En3)+", "+"Longl_F="+str(len(Z4))+" / "
@@ -401,10 +396,9 @@ class compression:
 
                                                                 W="0"+str(len(C1))+"b"
                                                                 CL1=format(longl,W)        
-                                                                CL2=format(En,'01b')
-                                                                CL3=format(len(CL2),'04b')
+                                                                CL2=format(En,'013b')
                                                                 
-                                                             
+                                                                CL4=format(En3,'013b')
                                                                
                                                                 #print(N3)
                                                                                                                          
@@ -417,7 +411,7 @@ class compression:
                                                                        #print(Long_PM1)
                                                                        N3=1                                                                       
                                                                        if N3==1:
-                                                                               File_information5_17="1"+CL3+CL2+CL1+Z4
+                                                                               File_information5_17="1"+CL4+CL2+CL1+Z4
                                                                                long_1=len(File_information5_17)
                                                                                add_bits=""
                                                                                count_bits=8-long_1%8
@@ -480,15 +474,15 @@ class compression:
                                                             
                                     INFO=Extract
 
-                                    Cut=int(INFO[:4],2)
+                                    En3=int(INFO[:13],2)
                                         #print(longl)
-                                    INFO=INFO[4:]                                 
+                                    INFO=INFO[13:]
                                     
                                     En2=0
                                         
-                                    En=int(INFO[:Cut],2)
+                                    En=int(INFO[:13],2)
                                         #print(longl)
-                                    INFO=INFO[Cut:]
+                                    INFO=INFO[13:]
                                     
                                     if En<=15:
                                         longl=int(INFO[:4],2)
@@ -540,14 +534,8 @@ class compression:
                                         longl=int(INFO[:13],2) 
                                         INFO=INFO[13:]
                                         SEN=13                                                                                   
-                                    elif En<=(8192*2)-1:
-                                        longl=int(INFO[:14],2) 
-                                        INFO=INFO[14:]
-                                        SEN=14                                                                                                                                                                       
-                                    elif En<=(8192*4)-1:
-                                        longl=int(INFO[:15],2) 
-                                        INFO=INFO[15:]
-                                        SEN=15                                        
+                                                                                                                                                                   
+                                    
                                     #print(SEN)                                    
                                     
                                     Extract1=0
@@ -594,7 +582,7 @@ class compression:
                                                        
                                                                 block+=3
                                                                 
-                                                                if En<=(8192*4)-1:                                                      
+                                                                if En<=8191:                                                         
                                                                 
                                                                     OCl=INFO[block:block+SEN]
                                                                     Size=int(OCl,2)
