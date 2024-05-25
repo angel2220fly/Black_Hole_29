@@ -237,7 +237,7 @@ class compression:
                                                                         C=format(Counts,'01b')
                                                                         C3=En-len(C)
                                                                         #print(C1)
-                                                                        if C3>=3+3 and En<=7 or C3>=4+3 and En<=15 or C3>=5+3 and En<=31 or C3>=6 +3 and En<=63 or C3>=7+3 and En<=127 or C3>=8+3 and En<=255 or C3>=9+3 and En<=511 or C3>=10+3 and En<=1023 or C3>=11+3 and En<=2047 or C3>=12+3 and En<=4095 or C3>=13+3 and En<=8191 or C3>=14+3 and  En<=(8192*2)-1 or C3>=15+3 and En<=(8192*4)-1 or C3>=16+3 and En<=(8192*8)-1 or  C3>=17+3 and En<=(8192*16)-1 or  C3>=18+3 and En<=(8192*32)-1 or  C3>=19+3 and En<=(8192*64)-1 or  C3>=20+3 and En<=(8192*256)-1 or INFO_A[:3]=="011" or INFO_A[:3]=="010":
+                                                                        if C3>=3+3 and En<=7 or C3>=4+3 and En<=15 or C3>=5+3 and En<=31 or C3>=6 +3 and En<=63 or C3>=7+3 and En<=127 or C3>=8+3 and En<=255 or C3>=9+3 and En<=511 or C3>=10+3 and En<=1023 or C3>=11+3 and En<=2047 or C3>=12+3 and En<=4095 or C3>=13+3 and En<=8191 or C3>=14+3 and  En<=(8192*2)-1 or C3>=15+3 and En<=(8192*4)-1 or C3>=16+3 and En<=(8192*8)-1 or  C3>=17+3 and En<=(8192*16)-1 or  C3>=18+3 and En<=(8192*32)-1 or  C3>=19+3 and En<=(8192*64)-1 or  C3>=20+3 and En<=(8192*128)-1 or C3>=21+3 and En<=(8192*256)-1 or INFO_A[:3]=="011" or INFO_A[:3]=="010":
                                                                             
     
                                                                                 #print(C3)
@@ -307,16 +307,16 @@ class compression:
                                                                                 C1=format(C4,'017b')   
                                                                                 
                                                                             elif En<=(8192*32)-1:
-                                                                                C1=format(C4,'017b')
+                                                                                C1=format(C4,'018b')
                                                                                 
                                                                             elif En<=(8192*64)-1:
-                                                                                C1=format(C4,'018b') 
+                                                                                C1=format(C4,'019b') 
                                                                                 
                                                                             elif En<=(8192*128)-1:
-                                                                                C1=format(C4,'019b')
+                                                                                C1=format(C4,'020b')
                                                                                 
                                                                             elif En<=(8192*256)-1:
-                                                                                C1=format(C4,'020b')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
+                                                                                C1=format(C4,'021b')                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    
                                                                             C2=format(longl,'06b') 
                                                                                                                                                         
     
@@ -392,7 +392,7 @@ class compression:
                                                                         
                                                                         
                                                                         
-                                                                        if len(input_string)>2**22:
+                                                                        if len(input_string)>2**23:
                                                                          smallest_longl_F_values = find_smallest_longl_F_values(input_string)
                                                                          if smallest_longl_F_values:
                                                                              en, longl_F = smallest_longl_F_values
@@ -583,29 +583,29 @@ class compression:
                                         SEN=16
                                         
                                     elif En<=(8192*16)-1:
-                                        longl=int(INFO[:16],2) 
-                                        INFO=INFO[16:]
-                                        SEN=16                                                                                                                                                                                                     
-                                    elif En<=(8192*32)-1:
                                         longl=int(INFO[:17],2) 
                                         INFO=INFO[17:]
-                                        SEN=17
+                                        SEN=17                                                                                                                                                                                                    
+                                    elif En<=(8192*32)-1:
+                                        longl=int(INFO[:18],2) 
+                                        INFO=INFO[18:]
+                                        SEN=18
                                         
                                           
                                     elif En<=(8192*64)-1:
-                                        longl=int(INFO[:18],2) 
-                                        INFO=INFO[18:]
-                                        SEN=18                                                
-                                    elif En<=(8192*128)-1:
                                         longl=int(INFO[:19],2) 
                                         INFO=INFO[19:]
-                                        SEN=19
+                                        SEN=19                                               
+                                    elif En<=(8192*128)-1:
+                                        longl=int(INFO[:20],2) 
+                                        INFO=INFO[20:]
+                                        SEN=20
                                         
                                              
                                     elif En<=(8192*256)-1:
-                                        longl=int(INFO[:20],2) 
-                                        INFO=INFO[20:]
-                                        SEN=20                                                                
+                                        longl=int(INFO[:21],2) 
+                                        INFO=INFO[21:]
+                                        SEN=21                                                             
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
                                     #print(SEN)                                    
