@@ -99,9 +99,9 @@ class compression:
                  
                
                        
-                    Key = 1
-                    level = 2
-                    L=40
+
+                    
+                
                     
                     
         
