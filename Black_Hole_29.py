@@ -121,8 +121,8 @@ class compression:
                     C2=0
                     C3=0
                     C4=0
-                    C5=0
-                    n=0
+                    
+                    
                     x = time()
                     File_information6_Times2_1=0
                     name_2=name
