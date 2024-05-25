@@ -29,7 +29,7 @@ class compression:
                                 En-=1
                                                                              
                                                                             
-                        if En==10 or M1==1:
+                        if En==3 or M1==1:
                                 En+=1
                                 M1=1
                                                                                       
@@ -237,7 +237,7 @@ class compression:
                                                                         C=format(Counts,'01b')
                                                                         C3=En-len(C)
                                                                         #print(C1)
-                                                                        if C3>=4+3 and En<=15 or C3>=5+3 and En<=31 or C3>=6 +3 and En<=63 or C3>=7+3 and En<=127 or C3>=8+3 and En<=255 or C3>=9+3 and En<=511 or C3>=10+3 and En<=1023 or C3>=11+3 and En<=2047 or C3>=12+3 and En<=4095 or C3>=13+3 and En<=8191 or C3>=14+3 and  En<=(8192*2)-1 or C3>=15+3 and En<=(8192*4)-1 or INFO_A[:3]=="011" or INFO_A[:3]=="010":
+                                                                        if C3>=3+3 and En<=7 or C3>=4+3 and En<=15 or C3>=5+3 and En<=31 or C3>=6 +3 and En<=63 or C3>=7+3 and En<=127 or C3>=8+3 and En<=255 or C3>=9+3 and En<=511 or C3>=10+3 and En<=1023 or C3>=11+3 and En<=2047 or C3>=12+3 and En<=4095 or C3>=13+3 and En<=8191 or C3>=14+3 and  En<=(8192*2)-1 or C3>=15+3 and En<=(8192*4)-1 or INFO_A[:3]=="011" or INFO_A[:3]=="010":
                                                                             
     
                                                                                 #print(C3)
@@ -260,7 +260,12 @@ class compression:
                                                                             Counts=int(INFO_A,2)
                                                                             C=format(Counts,'01b')
                                                                             C4=En-len(C)
-                                                                            if En<=15:
+                                                                            
+                                                                            
+                                                                                                                                                             
+                                                                            if En<=7:
+                                                                                C1=format(C4,'03b')                                                                                             
+                                                                            elif En<=15:
                                                                                 C1=format(C4,'04b')
                                                                                 
                                                                                 
@@ -486,6 +491,12 @@ class compression:
                                     En=int(INFO[:Cut],2)
                                         #print(longl)
                                     INFO=INFO[Cut:]
+                                    
+                                    if En<=7:
+                                        longl=int(INFO[:3],2)
+                                        #print(longl)
+                                        INFO=INFO[3:]
+                                        SEN=3  
                                     
                                     if En<=15:
                                         longl=int(INFO[:4],2)
