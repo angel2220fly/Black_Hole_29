@@ -6,7 +6,7 @@ import os.path
 long_1=0
 name=""
 add_bits=""
-Make_togher=""
+
 
 
 name_input = input("c,  compress or e, extract? ")
