@@ -49,15 +49,15 @@ class compression:
                                 
                 def find_smallest_longl_F_values(input_string):
                     # Extract all 'En', 'En2', 'En3', and 'Longl_F' values
-                    pattern = r'En=(\d+), En2=(\d+), En3=(\d+), Longl_F=(\d+)'
+                    pattern = r'En=(\d+), Longl_F=(\d+)'
                     matches = re.findall(pattern, input_string)
                 
                     # Convert the extracted strings to tuples of integers
-                    longl_F_values = [(int(en), int(en2), int(en3), int(longl_f)) for en, en2, en3, longl_f in matches]
+                    longl_F_values = [(int(en), int(longl_f)) for en, longl_f in matches]
                 
                     if longl_F_values:
                         # Find the smallest 'Longl_F' value and its corresponding variables
-                        smallest_longl_F_values = min(longl_F_values, key=lambda x: x[3])
+                        smallest_longl_F_values = min(longl_F_values, key=lambda x: x[1])
                         return smallest_longl_F_values
                     else:
                         return None
@@ -302,9 +302,7 @@ class compression:
                                                                                    
                                                                             if C3!=1:
                                                                                    Z5="011"+C1+C
-                                                                                   if En1!=0 and block+En1+En-En3<=long_F:
-                                                                                           Z5="011"+C1+C+INFO_A1
-                                                                                           block+=En1+En1+En-En3
+
                                                                                    #print(Z5) 
                                                                                        
                                                                                    
@@ -347,10 +345,9 @@ class compression:
                                                                         smallest_longl_F_values = find_smallest_longl_F_values(input_string)
                                                                         
                                                                         if smallest_longl_F_values:
-                                                                            en, en2, en3, longl_F = smallest_longl_F_values
+                                                                            en, longl_F = smallest_longl_F_values
                                                                             En=int(en)
-                                                                            En1=int(en2)
-                                                                            En3=int(en3)
+                                                                            
                                                                             Find=2     
                                                                                                                 
                                                                                                                                                                                                                                                                                                                                                                                 
@@ -364,18 +361,18 @@ class compression:
                                                                     elif len(Z4)+8+13+8+len(C1) < long_11*8:
                                                                         
                                                                         
-                                                                        input_string+= "En="+str(En)+", "+"En2="+str(En1)+", "+"En3="+str(En3)+", "+"Longl_F="+str(len(Z4))+" / "
+                                                                        input_string+= "En="+str(En)+", "+"Longl_F="+str(len(Z4))+" / "
                                                                    
                                                                         
                                                                     
                                                                         
                                                                         
                                                                         
-                                                                        if len(input_string)>10000:
+                                                                        if len(input_string)>100:
                                                                          smallest_longl_F_values = find_smallest_longl_F_values(input_string)
                                                                          if smallest_longl_F_values:
-                                                                             en, en2, en3, longl_F = smallest_longl_F_values
-                                                                             input_string= "En="+str(en)+", "+"En2="+str(en2)+", "+"En3="+str(en3)+", "+"Longl_F="+str(longl_F)+" / "
+                                                                             en, longl_F = smallest_longl_F_values
+                                                                             input_string= "En="+str(en)+", "+"Longl_F="+str(longl_F)+" / "
                                                                              #print(input_string)
                                                                              
                                                                                                                                                                                                                                                                                        
@@ -613,14 +610,8 @@ class compression:
                                                                 C="0"+str(longl)+"b"
                                                                 ZE=format(E,En1)
                                                                 Z2Z=format(E,C)
-                                                                if En2!=0:
-                                                                        CAll=0
-                                                                        CAll=int(block)+int(En2-En3)
-                                                                        if CAll<=long_F:
-                                                                            EB1=INFO[block:block+En2-En3]
-                                                                            ZE=ZE+EB1
-                                                                            block+=En2-En3
-                                                                            C9=1
+
+                                                                         
                                                                             
                                                             else:
                                                                    EB=INFO[block:block+En]
