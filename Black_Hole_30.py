@@ -392,7 +392,7 @@ class compression:
                                                                         
                                                                         
                                                                         
-                                                                        if len(input_string)>2**23:
+                                                                        if len(input_string)>10000:
                                                                          smallest_longl_F_values = find_smallest_longl_F_values(input_string)
                                                                          if smallest_longl_F_values:
                                                                              en, longl_F = smallest_longl_F_values
