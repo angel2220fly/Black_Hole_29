@@ -612,13 +612,13 @@ class compression:
                                                                    
                                                                 EB=INFO[block:block+(En-Size)]
                                                                
-                                                                block+=Size
+                                                                block+=En-Size
                                                                 En1="0"+str(En-Size)+"b"
                                                                 
                                                              
                                                                 E=int(EB,2)
                                                                 ZE=format(E,En1)
-                                                                C="0"+str(longl)+"b"
+                                                                C="0"+str(longl-Size)+"b"
                                                                 ZE=format(E,En1)
                                                                 Z2Z=format(E,C)
 
