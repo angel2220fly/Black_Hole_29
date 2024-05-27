@@ -612,8 +612,8 @@ class compression:
                                                                    
                                                                 EB=INFO[block:block+(En-Size)]
                                                                
-                                                                block+=(En-Size)
-                                                                En1="0"+str(En)+"b"
+                                                                block+=Size
+                                                                En1="0"+str(En-Size)+"b"
                                                                 
                                                              
                                                                 E=int(EB,2)
