@@ -404,7 +404,7 @@ class compression:
                                                                 W="0"+str(len(C1))+"b"
                                                                 CL1=format(longl,W)        
                                                                 CL2=format(En,'01b')
-                                                                CL3=format(len(CL2),'04b')
+                                                                CL3=format(len(CL2),'06b')
                                                                 
                                                              
                                                                
@@ -482,9 +482,9 @@ class compression:
                                                             
                                     INFO=Extract
 
-                                    Cut=int(INFO[:4],2)
+                                    Cut=int(INFO[:6],2)
                                         #print(longl)
-                                    INFO=INFO[4:]                                 
+                                    INFO=INFO[6:]                                 
                                     
                                     En2=0
                                         
